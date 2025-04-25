@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<head>
+    <title>Lista de Filmes</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <section>
+        <h1 class="mb-4">🎬 Lista de Filmes</h1>
+
+        <a href="/filmes/novo" class="btn btn-success mb-3">+ Cadastrar novo filme</a>
+
+        <ul class="list-group">
+            <li class="list-group-item" th:each="filme : ${filmes}">
+                <a th:href="@{|/filmes/${filme.id}|}" th:text="${filme.titulo}"></a>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
+
+

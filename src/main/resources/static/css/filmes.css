@@ -1,0 +1,25 @@
+.filme {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+.analise {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-left: 4px solid #007bff;
+    background: #e0f0ff;
+}
+
+form {
+    margin-top: 2rem;
+}
+
+label, input, textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+}

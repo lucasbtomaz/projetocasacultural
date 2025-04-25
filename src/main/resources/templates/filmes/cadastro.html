@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Filme</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Seu CSS opcional -->
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="mb-4">Cadastrar Filme</h1>
+
+        <form th:action="@{/filmes/salvar}" th:object="${filme}" method="post" class="border p-4 bg-white rounded shadow-sm">
+            <div class="mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" th:field="*{titulo}" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sinopse</label>
+                <input type="text" th:field="*{sinopse}" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gênero</label>
+                <input type="text" th:field="*{genero}" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ano de Lançamento</label>
+                <input type="number" th:field="*{anoLancamento}" class="form-control"/>
+            </div>
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a th:href="@{/filmes}" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
