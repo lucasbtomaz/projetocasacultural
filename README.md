@@ -5,42 +5,6 @@ Com o **objetivo** de montar um site para o estabelecimento para divulgar as aç
 
 **Nota:** Para fins de testes iniciais, o desenvolvimento deve ser feito utilizando apenas armazenamento em memória (sem banco de dados).
 
-## 📁 Estrutura do Projeto
-
-projeto-casa-cultural/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── cinema/
-│   │   │           └── projetocasacultural/
-│   │   │               ├── controller/
-│   │   │               │   ├── HomeController.java
-│   │   │               │   ├── FilmeController.java
-│   │   │               │   └── AnaliseController.java
-│   │   │               └── model/
-│   │   │                   ├── Filme.java
-│   │   │                   └── Analise.java
-│   │   └── resources/
-│   │       ├── static/
-│   │       │   ├── css/
-│   │       │   │   ├── bootstrap.min.css
-│   │       │   │   └── estilo.css
-│   │       │   ├── js/
-│   │       │   │   └── bootstrap.bundle.min.js
-│   │       │   └── image/
-│   │       │       ├── casacultural.jpeg
-│   │       │       └── rodape.jpeg
-│   │       └── templates/
-│   │           ├── index.html
-│   │           ├── filmes/
-│   │           │   ├── cadastro.html
-│   │           │   ├── lista.html
-│   │           │   └── detalhes.html
-│   │           └── analises/
-│   │               └── formulario.html
-└── pom.xml
-
 ## 🌐 Rotas e Componentes Associados
 
 1. Página Inicial

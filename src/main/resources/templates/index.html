@@ -1,68 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Cultural Papa Francisco</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"> 
-</head>
-<body>
-    <!-- Menu de navegação -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="">Visite</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Programação</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Bibliotecas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/filmes/novo">Cadastrar Filme</a></li>
-                <li class="nav-item"><a class="nav-link" href="/filmes">Lista de Filmes</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Fale Conosco</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Institucional</a></li>                
-            </ul>
-        </div>
-    </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Casa Cultural Papa Francisco</title>
 
-    <!-- TOPO -->
-        <header class="bg-light py-4">
-            <div class="container d-flex flex-wrap align-items-center justify-content-between">
-                <img th:src="@{../static/image/casacultural.jpg}" class="img-fluid" alt="Casa Cultural">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+        <!-- Estilos personalizados -->
+        <link rel="stylesheet" th:href="@{/css/home.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+
+    <body>
+
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="">Visite</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Programação</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Bibliotecas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/filmes/cadastro">Cadastrar Filme</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/filmes/lista">Lista de Filmes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contato">Fale Conosco</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Institucional</a></li>                
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- TOPO -->
+        <header class="topo-header d-flex align-items-center justify-content-center">
+            <div>
+                <img th:src="@{/image/casacultural.jpg}" class="footer-logo" alt="Casa Cultural">
+            </div>
+            <div class="text-center">
+                <h1 class="display-5">Bem-vindo à Casa Cultural Papa Francisco</h1>
+                <p class="lead">A Casa Cultural Papa Francisco é um equipamento da Secretaria Municipal de Cultura e Economia Criativa da Cidade de São Paulo</p>
             </div>
         </header>
 
-    <div class="container mt-4">
-        <h1 class="mt-4">Bem-vindo à Casa Cultural Papa Francisco</h1>
-        <p>A Casa Cultural Papa Francisco é um equipamento da Secretaria Municipal de Cultura e Economia Criativa da Cidade de São Paulo</p>
-    </div>
+        <!-- CARDS DE PROGRAMAÇÃO -->
+        <section class="container my-5">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img th:src="@{/image/CaetanoVeloso.jpg}" class="card-img-top" alt="Caetano Veloso">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Performance:</h5>
+                            <p class="card-text flex-grow-1">Caetano Veloso recebe artistas e amigos para uma apresentação no dia de seu aniversário.</p>
+                            <a href="#" class="btn btn-primary mt-auto">Garanta seu ingresso</a>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Programação -->
-    <section class="container my-5">
-        <div class="card">
-            <img th:src="@{/image/CaetanoVeloso.jpg}" alt="Caetano Veloso">
-            <h3>Performance:</h3>
-            <p>Caetano Veloso.</p>
-            <a href="" class="botao">Garanta seu ingresso</a>
-        </div>
-        <div class="card">
-            <img th:src="@{/image/mangas.jpg}" alt="Cultura Geek">
-            <h3>Seis leituras para fãs de literatura japonesa:</h3>
-            <p>Você já leu algum livro de autores japoneses? Uma das categorias literárias que se destacaram nas bibliotecas do CCSP em 2024.</p>
-            <a href="servicos.html" class="botao">Leia</a>
-        </div>
-    </section>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="/image/mangas.jpg" class="card-img-top" alt="Cultura Geek">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Seis leituras para fãs de literatura japonesa:</h5>
+                            <p class="card-text flex-grow-1">Você já leu algum livro de autores japoneses? Uma das categorias literárias que se destacaram nas bibliotecas do CCSP em 2024.</p>
+                            <a href="servicos.html" class="btn btn-primary mt-auto">Leia</a>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Rodapé -->
-    <footer class="bg-light text-center mt-5 p-3">
-        <img th:src="@{/image/rodape.jpeg}" class="img-fluid" alt="Rodapé">
-        <p class="mt-2">© 2025 Casa Cultural - Todos os direitos reservados | Endereço: Rua Zero - São Paulo - SP </p>
-        <div class="social">
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
-    </footer>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img th:src="@{/image/cinema.jpg}" class="card-img-top" alt="Lista de Filmes">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Confira nossa lista de filmes:</h5>
+                            <p class="card-text flex-grow-1">Conheça os filmes disponíveis na nossa Casa Cultural, uma seleção feita com muito carinho para você!</p>
+                            <a href="/filmes/lista" class="btn btn-primary mt-auto">Ver Filmes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-</body>
+        <!-- RODAPÉ -->
+        <footer class="bg-dark text-center mt-5 p-3">
+            <div class="overlay ">
+            <p>© 2025 Casa Cultural - Todos os direitos reservados | Endereço: Rua Zero - São Paulo - SP </p>
+            </div>
+            <div class="social">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
 </html>

@@ -7,6 +7,8 @@ public class Analise {
     private String analise;
     private int nota;
 
+    public Analise() {}
+
     public Analise(Long id, Filme filme, String analise, int nota) {
         this.id = id;
         this.filme = filme;
@@ -14,26 +16,13 @@ public class Analise {
         this.nota = nota;
     }
 
-    public Analise() {
-    }
+    public Long getId() { return id; }
+    public Filme getFilme() { return filme; }
+    public String getAnalise() { return analise; }
+    public int getNota() { return nota; }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Filme getFilme() {
-        return filme;
-    }
-
-    public String getAnalise() {
-        return analise;
-    }
-
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
-        this.nota = nota;
-    }
+    public void setId(Long id) { this.id = id; }
+    public void setFilme(Filme filme) { this.filme = filme; }
+    public void setAnalise(String analise) { this.analise = analise; }
+    public void setNota(int nota) { this.nota = nota; }
 }

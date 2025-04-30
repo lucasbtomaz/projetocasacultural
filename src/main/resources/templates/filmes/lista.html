@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt">
-<head>
-    <title>Lista de Filmes</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/estilo.css">
-    <script src="/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <section>
-        <h1 class="mb-4">🎬 Lista de Filmes</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Filmes</title>
 
-        <a href="/filmes/novo" class="btn btn-success mb-3">+ Cadastrar novo filme</a>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-        <ul class="list-group">
-            <li class="list-group-item" th:each="filme : ${filmes}">
-                <a th:href="@{|/filmes/${filme.id}|}" th:text="${filme.titulo}"></a>
-            </li>
-        </ul>
-    </section>
-</body>
+        <!-- CSS específico da lista -->
+        <link rel="stylesheet" href="/css/filmes.css">
+
+        <!-- Bootstrap JS -->
+        <script src="/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body class="bg-light">
+        <section class="container mt-5">
+            <h1 class="mb-4">🎬 Lista de Filmes</h1>
+
+            <div class="row">
+                <div class="col-md-4" th:each="filme : ${filmes}">
+                    <div class="card mb-4 shadow-sm">
+                        <img th:src="@{/image/rodape.jpg}" class="card-img-top" alt="Imagem Filme">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" th:text="${filme.titulo}"></h5>
+                            <a th:href="@{/filmes/detalhes/{id}(id=${filme.id})}" class="btn btn-primary btn-sm">Detalhes</a>
+                            <a th:href="@{/filmes/avaliar/{id}(id=${filme.id})}" class="btn btn-success btn-sm">Avaliar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/" class="btn btn-secondary">Inicio</a>
+            <a th:href="@{/filmes/cadastro}" class="btn btn-secondary">Cadastrar Filme</a>
+
+
+        </section>
+    </body>
+
+
 </html>
-
-

@@ -2,66 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt">
     <head>
         <meta charset="UTF-8">
-        <title th:text="'Detalhes de ' + ${filme.titulo}">Detalhes do Filme</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-
-        <!-- Bootstrap CSS -->
+        <title>Avaliar Filme</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/detalhes.css">
     </head>
     <body class="bg-light">
 
-        <div class="container mt-5">
-            <h1 class="mb-3" th:text="${filme.titulo}"></h1>
+        <section class="container mt-5">
+            <h1 class="mb-4">📝 Avaliar: <span th:text="${filme.titulo}"></span></h1>
 
-            <div class="mb-4">
-                <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}"></span></p>
-                <p><strong>Gênero:</strong> <span th:text="${filme.genero}"></span></p>
-                <p><strong>Ano:</strong> <span th:text="${filme.anoLancamento}"></span></p>
-            </div>
+            <form th:action="@{/filmes/salvar-analise}" method="post">
+                <!-- Campo oculto com o ID do filme -->
+                <input type="hidden" name="filme.id" th:value="${filme.id}" />
 
-            <h2 class="mt-4">Análises</h2>
-            <ul class="list-group mb-4">
-                <li class="list-group-item" th:each="a : ${filme.analises}">
-                    <strong th:text="${a.analise}"></strong> - Nota: <span th:text="${a.nota}"></span>
-                </li>
-            </ul>
-
-            <h3 class="mb-3">Adicionar Análise</h3>
-            <form th:action="@{|/filmes/${filme.id}/analisar|}" th:object="${analise}" method="post" class="border p-4 bg-white rounded shadow-sm">
                 <div class="mb-3">
-                    <label class="form-label">Comentário</label>
-                    <input type="text" th:field="*{analise}" class="form-control" />
+                    <label for="analise" class="form-label">Comentário:</label>
+                    <textarea class="form-control" id="analise" name="analise" rows="4" required></textarea>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">Nota</label>
-                    <label>Nota: <input type="number" th:field="*{nota}" /></label>
+                    <label for="nota" class="form-label">Nota (0 a 10):</label>
+                    <input type="number" class="form-control" id="nota" name="nota" min="0" max="10" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-                <a th:href="@{/filmes}" class="btn btn-secondary">Voltar</a>
+
+                <button type="submit" class="btn btn-primary">Salvar Análise</button>
+                <a href="/filmes/lista" class="btn btn-secondary">Voltar</a>
             </form>
-        </div>
-        <table id="tabelaAnalises" class="display">
-    <thead>
-        <tr>
-            <th>Comentário</th>
-            <th>Nota</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="a : ${filme.analises}">
-            <td th:text="${a.analise}"></td>
-            <td th:text="${a.nota}"></td>
-        </tr>
-    </tbody>
-</table>
-
-
+        </section>
         <!-- Bootstrap JS -->
         <script src="/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
-
