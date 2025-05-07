@@ -1,0 +1,23 @@
+name: Release para Produção (Main)
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validar-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Última verificação antes do merge final
+        run: echo "Preparado para produção"
+
+      - name: Exibir autor e branch
+  run: |
+    echo "Autor: ${{ github.actor }}"
+    echo "Branch: ${{ github.head_ref }}"

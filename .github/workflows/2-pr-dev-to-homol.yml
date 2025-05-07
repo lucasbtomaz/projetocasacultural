@@ -1,0 +1,23 @@
+name: Dev para Homologação
+
+on:
+  pull_request:
+    branches:
+      - homol
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validate-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validar código
+        run: echo "Validação da branch dev antes de ir para homol"
+
+      - name: Exibir autor e branch
+  run: |
+    echo "Autor: ${{ github.actor }}"
+    echo "Branch: ${{ github.head_ref }}"

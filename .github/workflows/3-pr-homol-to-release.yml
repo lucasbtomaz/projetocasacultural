@@ -1,0 +1,23 @@
+name: Homologação para Release
+
+on:
+  pull_request:
+    branches:
+      - release
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validar-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Checklist pré-release
+        run: echo "Checklist do que será lançado"
+
+      - name: Exibir autor e branch
+  run: |
+    echo "Autor: ${{ github.actor }}"
+    echo "Branch: ${{ github.head_ref }}"
