@@ -32,6 +32,6 @@ jobs:
         run: dotnet test
 
       - name: Exibir autor e branch
-  run: |
-    echo "Autor: ${{ github.actor }}"
-    echo "Branch: ${{ github.head_ref }}"
+        run: |
+            echo "Autor: ${{ github.actor }}"
+            echo "Branch: ${{ github.head_ref }}"
