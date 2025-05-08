@@ -1,12 +1,16 @@
 package com.cinema.projetocasacultural.data;
 
+import com.cinema.projetocasacultural.model.Analise;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 import lombok.Data;
 
 @Entity
@@ -25,7 +29,9 @@ public class FilmeEntity {
     
     @NotNull(message="Genero obrigatorio")
     private String genero;
-    
-    @AnoLancamento(message="Ano Lancamento inválido") 
+     
     private int anoLancamento;
+    
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Analise> analises;
 }
