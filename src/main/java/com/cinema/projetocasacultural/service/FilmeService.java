@@ -13,11 +13,11 @@ public class FilmeService {
     @Autowired
     FilmeRepository filmerepository;
 
-    public FilmeRepository criarFilme(FilmeEntity film) {
-        film.setId(null);
-        filmerepository.save(film);
-        return film;
-    }
+    public FilmeEntity criarFilme(FilmeEntity film) {
+    film.setId(null);
+    return filmerepository.save(film); 
+}
+
 
     public FilmeEntity atualizarFilme() {
         return film;
