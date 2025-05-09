@@ -3,7 +3,7 @@ name: Feature para Dev
 on:
   push:
     branches:
-      - feature/*
+      - feature-*
 
 jobs:
   test-feature:
