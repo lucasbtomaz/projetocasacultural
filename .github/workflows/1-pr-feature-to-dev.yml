@@ -1,15 +1,9 @@
 name: Feature para Dev
 
 on:
-  pull_request:
+  push:
     branches:
-      - dev
-    paths:
-      - "**/*"
-    types:
-      - opened
-      - synchronize
-      - reopened
+      - 'feature/**'
 
 jobs:
   test-feature:
@@ -17,21 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+      - name: Configurar JDK
+        uses: actions/setup-java@v3
         with:
-          dotnet-version: "7.0.x"
+          distribution: 'temurin'
+          java-version: '21'
 
-      - name: Restore
-        run: dotnet restore
+      - name: Iniciar processo
+        run: echo "Processo iniciado para ${{ github.ref_name }}"
 
-      - name: Build
-        run: dotnet build --no-restore
+      - name: Build e Testes com Maven
+        run: mvn clean verify
 
-      - name: Run tests
-        run: dotnet test
+      - name: Testes concluídos com sucesso
+        run: echo "Todos os testes passaram!"
 
-      - name: Exibir autor e branch
-        run: |
-            echo "Autor: ${{ github.actor }}"
-            echo "Branch: ${{ github.head_ref }}"
+      - name: Criar PR para dev
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: 'Merge automático da feature para dev'
+          body: 'PR criado automaticamente após testes com sucesso.'
+          base: dev
+          branch: ${{ github.ref_name }}
+          draft: false

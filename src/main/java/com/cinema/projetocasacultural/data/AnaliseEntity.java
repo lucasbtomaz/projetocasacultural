@@ -21,8 +21,8 @@ public class AnaliseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "filme_id")
-    private Filme filme;
+    @JoinColumn(name = "filme_id", referencedColumnName = "id")
+    private FilmeEntity filme;
 
     @Size(min = 2, message = "Informe ao menos 2 caracteres para o campo analise")
     private String analise;

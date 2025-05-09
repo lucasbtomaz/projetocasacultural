@@ -1,38 +1,49 @@
+
 package com.cinema.projetocasacultural.service;
 
 import com.cinema.projetocasacultural.data.FilmeEntity;
 import com.cinema.projetocasacultural.data.FilmeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List; 
+import java.util.List;
 
 
 @Service
 public class FilmeService {
 
-    @Autowired
-    FilmeRepository filmerepository;
+    private final FilmeRepository filmeRepository;
 
-    public FilmeEntity criarFilme(FilmeEntity film) {
-    film.setId(null);
-    return filmerepository.save(film); 
-}
-
-
-    public FilmeEntity atualizarFilme() {
-        return film;
+    public FilmeService(FilmeRepository filmeRepository) {
+        this.filmeRepository = filmeRepository;
     }
 
-    public FilmeEntity getFilmeId(Integer funcId) {
-        return filmerepository.findById(filmId).orElse(null);
+    public List<FilmeEntity> listarTodos() {
+        return filmeRepository.findAll();
     }
 
-    public List<FilmeEntity> listarTodosOsFilmes() {
-        return filmerepository.findAll();
+    public FilmeEntity buscarPorId(Long id) {
+        return filmeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Filme não encontrado com id: " + id));
     }
 
-    public void deletarFuncionario(Integer funcId) {
-        FilmeEntity func = getFilmeId(funcId);
-        filmerepository.deleteById(func.getId());
+    public FilmeEntity criar(FilmeEntity filme) {
+        return filmeRepository.save(filme);
+    }
+
+    public FilmeEntity atualizar(Long id, FilmeEntity atualizado) {
+        FilmeEntity existente = filmeRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Filme não encontrado com ID: " + id));
+
+        existente.setTitulo(atualizado.getTitulo());
+        existente.setSinopse(atualizado.getSinopse());
+        existente.setGenero(atualizado.getGenero());
+        existente.setAnoLancamento(atualizado.getAnoLancamento());
+
+        return filmeRepository.save(existente);
+    }
+
+
+    public void deletar(Long id) {
+        FilmeEntity existente = buscarPorId(id);
+        filmeRepository.delete(existente);
     }
 }

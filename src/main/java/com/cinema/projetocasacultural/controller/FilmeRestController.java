@@ -1,7 +1,7 @@
 package com.cinema.projetocasacultural.controller;
 
-import com.cinema.projetocasacultural.data.FilmeRepository;
-import com.cinema.projetocasacultural.model.Filme;
+import com.cinema.projetocasacultural.data.FilmeEntity;
+import com.cinema.projetocasacultural.service.FilmeService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,46 +17,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/filmes")
 public class FilmeRestController {
 
-    private final FilmeRepository filmeRepository;
+    private final FilmeService filmeService;
 
-    public FilmeRestController(FilmeRepository filmeRepository) {
-        this.filmeRepository = filmeRepository;
+    public FilmeRestController(FilmeService filmeService) {
+        this.filmeService = filmeService;
     }
 
     @GetMapping
-    public List<Filme> listarTodos() {
-        return filmeRepository.findAll();
+    public List<FilmeEntity> listarTodos() {
+        return filmeService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> buscarPorId(@PathVariable Long id) {
-        return filmeRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<FilmeEntity> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(filmeService.buscarPorId(id));
     }
 
     @PostMapping
-    public Filme criar(@RequestBody Filme filme) {
-        return filmeRepository.save(filme);
+    public ResponseEntity<FilmeEntity> criar(@RequestBody FilmeEntity filme) {
+        return ResponseEntity.ok(filmeService.criar(filme));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Filme> atualizar(@PathVariable Long id, @RequestBody Filme atualizado) {
-        return filmeRepository.findById(id)
-                .map(filme -> {
-                    filme.setTitulo(atualizado.getTitulo());
-                    filme.setSinopse(atualizado.getSinopse());
-                    return ResponseEntity.ok(filmeRepository.save(filme));
-                }).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<FilmeEntity> atualizar(@PathVariable Long id, @RequestBody FilmeEntity atualizado) {
+        return ResponseEntity.ok(filmeService.atualizar(id, atualizado));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletar(@PathVariable Long id) {
-        return filmeRepository.findById(id)
-                .map(filme -> {
-                    filmeRepository.delete(filme);
-                    return ResponseEntity.<Void>noContent().build(); 
-                }).orElse(ResponseEntity.notFound().build());
+        filmeService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
-
 }

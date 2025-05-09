@@ -1,6 +1,5 @@
 package com.cinema.projetocasacultural.data;
 
-import com.cinema.projetocasacultural.model.Analise;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="Filme")
+@Table(name="filme")
 public class FilmeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,5 +32,5 @@ public class FilmeEntity {
     private int anoLancamento;
     
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Analise> analises;
+    private List<AnaliseEntity> analises;
 }
