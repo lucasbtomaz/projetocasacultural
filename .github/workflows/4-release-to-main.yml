@@ -1,0 +1,27 @@
+name: Release para Produção (Main)
+
+on:
+  pull_request:
+    branches:
+      - release
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validar-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+      - name: Validar release
+        run: |
+          ./mvnw clean install
+      - name: Criar PR para produção
+        if: success()
+        run: |
+          gh pr create --base main --head release --title "Deploy para produção" --body "PR automático de release para produção"

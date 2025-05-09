@@ -1,0 +1,31 @@
+name: Dev para Homologação
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validate-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+      - name: Validar código
+        run: |
+          ./mvnw clean install  # Ajuste conforme sua ferramenta
+      - name: Exibir autor e branch
+        run: |
+            echo "Autor: ${{ github.actor }}"
+            echo "Branch: ${{ github.head_ref }}"
+      - name: Criar PR para homologação
+        if: success()
+        run: |
+          gh pr create --base homol --head develop --title "PR para homol" --body "PR automático após merge para develop"

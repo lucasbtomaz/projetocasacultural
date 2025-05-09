@@ -1,0 +1,47 @@
+name: Feature para Dev
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  test-feature:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Iniciando processo
+        run: echo "Processo iniciado!"
+
+      - name: Build e Testes
+        run: ./mvnw clean install 
+
+      - name: Testes concluídos com sucesso
+        run: echo "Todos os testes passaram!"
+
+      - name: Instalar GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh -y
+
+      - name: Autenticar GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: echo "$GH_TOKEN" | gh auth login --with-token
+
+      - name: Criar PR automaticamente
+        if: success()
+        run: |
+          gh pr create \
+            --base develop \
+            --head ${{ github.ref_name }} \
+            --title "PR automático da feature para develop" \
+            --body "Este PR foi criado automaticamente após os testes passarem com sucesso."

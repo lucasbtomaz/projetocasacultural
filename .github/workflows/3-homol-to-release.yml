@@ -1,0 +1,28 @@
+name: Homologação para Release
+
+on:
+  pull_request:
+    branches:
+      - homol
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validar-homol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+      - name: Validar homologação
+        run: |
+          ./mvnw clean install
+      - name: Criar PR para release automaticamente
+        if: success()
+        run: |
+          release_version=$(date +'%Y%m%d%H%M%S')  # Exemplo de versão gerada automaticamente
+          gh pr create --base release --head homol --title "Release v$release_version" --body "PR automático de release"
