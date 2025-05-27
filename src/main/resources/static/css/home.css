@@ -1,13 +1,22 @@
+/* Configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
 
+/* Cabeçalhos */
 h2, h3 {
     color: #444;
 }
 
+/* Botões */
 button {
     background: #007bff;
     color: white;
@@ -15,16 +24,18 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 button:hover {
     background: #0056b3;
 }
 
-card {
+/* Cards */
+.card {
     border: none;
-    width: 70%; 
-    transition: transform 0.2s;
+    width: 100%;
+    transition: transform 0.2s ease;
 }
 
 .card:hover {
@@ -36,32 +47,66 @@ card {
     height: 100%;
 }
 
+/* Ícones sociais */
 .social a {
-    margin: 10px 10px;
+    margin: 10px;
     color: #fff;
     font-size: 2rem;
+    transition: color 0.3s ease;
 }
 
+.social a:hover {
+    color: #007bff;
+}
+
+/* Navbar */
 .navbar-nav {
     flex-direction: row;
     justify-content: center;
     width: 100%;
 }
+
 .nav-item {
     margin: 0 10px;
 }
 
+/* Rodapé */
 footer {
+    background-color: #222;
     color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-
+/* Imagem do topo */
 .topo-img {
-    width: 80%; 
-    max-height: 200px; 
+    width: 80%;
+    max-height: 200px;
     object-fit: cover;
 }
 
+/* Texto do rodapé */
 .overlay {
     color: white;
+}
+
+/* Ajustando espaçamento geral */
+.container {
+    padding: 20px;
+}
+
+/* Melhora legibilidade em dispositivos móveis */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 90%;
+        margin: auto;
+    }
+
+    .social a {
+        font-size: 1.5rem;
+    }
 }

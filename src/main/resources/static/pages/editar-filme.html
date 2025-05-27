@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Filme</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="mb-4">✏️ Editar Filme</h1>
+
+        <form id="formEditarFilme">
+            <input type="hidden" id="filmeId">
+            
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="sinopse" class="form-label">Sinopse</label>
+                <textarea class="form-control" id="sinopse" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="genero" class="form-label">Gênero</label>
+                <input type="text" class="form-control" id="genero" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="anoLancamento" class="form-label">Ano de Lançamento</label>
+                <input type="number" class="form-control" id="anoLancamento" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <a href="/pages/lista.html" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/editar-filme.js"></script>
+</body>
+</html>
